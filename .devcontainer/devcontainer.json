@@ -4,6 +4,7 @@
     "name": "ardupilot",
     "build": {
         "dockerfile": "Dockerfile",
+        "context": ".."
     },
     // "workspaceFolder": "/workspace",
     // "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
@@ -46,8 +47,10 @@
     ],
     // "appPort": [3333, 4444, 6666, 50000, 50001, 50002],
     "mounts": [
-        "source=${localWorkspaceFolder}/.devcontainer/.bash_aliases,target=/home/vscode/.bash_aliases,type=bind" 
+        "source=${localWorkspaceFolder}/.devcontainer/.bash_aliases,target=/home/vscode/.bash_aliases,type=bind",
+        "source=${localWorkspaceFolder},target=/workspace,type=bind"
     ],
+    "workspaceFolder": "/workspace",
     // // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
 
