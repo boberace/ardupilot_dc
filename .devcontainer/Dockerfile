@@ -42,22 +42,22 @@ RUN SKIP_AP_EXT_ENV=$SKIP_AP_EXT_ENV SKIP_AP_GRAPHIC_ENV=$SKIP_AP_GRAPHIC_ENV SK
 # Check that local/bin are in PATH for pip --user installed package
 RUN echo "if [ -d \"\$HOME/.local/bin\" ] ; then\nPATH=\"\$HOME/.local/bin:\$PATH\"\nfi" >> ~/.ardupilot_env
 
-# Create entrypoint as docker cannot do shell substitution correctly
-RUN export ARDUPILOT_ENTRYPOINT="/home/${USER_NAME}/ardupilot_entrypoint.sh" \
-    && echo "#!/bin/bash" > $ARDUPILOT_ENTRYPOINT \
-    && echo "set -e" >> $ARDUPILOT_ENTRYPOINT \
-    && echo "source /home/${USER_NAME}/.ardupilot_env" >> $ARDUPILOT_ENTRYPOINT \
-    && echo 'exec "$@"' >> $ARDUPILOT_ENTRYPOINT \
-    && chmod +x $ARDUPILOT_ENTRYPOINT \
-    && sudo mv $ARDUPILOT_ENTRYPOINT /ardupilot_entrypoint.sh
+# # Create entrypoint as docker cannot do shell substitution correctly
+# RUN export ARDUPILOT_ENTRYPOINT="/home/${USER_NAME}/ardupilot_entrypoint.sh" \
+#     && echo "#!/bin/bash" > $ARDUPILOT_ENTRYPOINT \
+#     && echo "set -e" >> $ARDUPILOT_ENTRYPOINT \
+#     && echo "source /home/${USER_NAME}/.ardupilot_env" >> $ARDUPILOT_ENTRYPOINT \
+#     && echo 'exec "$@"' >> $ARDUPILOT_ENTRYPOINT \
+#     && chmod +x $ARDUPILOT_ENTRYPOINT \
+#     && sudo mv $ARDUPILOT_ENTRYPOINT /ardupilot_entrypoint.sh
 
-# Set the buildlogs directory into /tmp as other directory aren't accessible
-ENV BUILDLOGS=/tmp/buildlogs
+# # Set the buildlogs directory into /tmp as other directory aren't accessible
+# ENV BUILDLOGS=/tmp/buildlogs
 
-# Cleanup
-RUN sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# # Cleanup
+# RUN sudo apt-get clean \
+#     && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV CCACHE_MAXSIZE=1G
-ENTRYPOINT ["/ardupilot_entrypoint.sh"]
-CMD ["bash"]
+# ENV CCACHE_MAXSIZE=1G
+# ENTRYPOINT ["/ardupilot_entrypoint.sh"]
+# CMD ["bash"]

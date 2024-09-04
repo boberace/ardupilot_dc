@@ -43,14 +43,16 @@
         "chris-hock.pioasm",
         "GitHub.copilot",
         "GitHub.copilot-chat",
-        "george-alisson.html-preview-vscode"
+        "george-alisson.html-preview-vscode",
+        "ardupilot-org.ardupilot-devenv"
     ],
     // "appPort": [3333, 4444, 6666, 50000, 50001, 50002],
-    "mounts": [
-        "source=${localWorkspaceFolder}/.devcontainer/.bash_aliases,target=/home/vscode/.bash_aliases,type=bind",
-        "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    // "workspaceFolder": "/workspace",
+    "mounts": [        
+        // "source=${localWorkspaceFolder},target=/workspace,type=bind",
+        "source=${localWorkspaceFolder}/.devcontainer/.bash_aliases,target=/home/ardupilot/.bash_aliases,type=bind"
     ],
-    "workspaceFolder": "/workspace",
+    
     // // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
 
@@ -58,6 +60,6 @@
     // "postCreateCommand": "gcc -v",
 
     // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-    "remoteUser": "ardupilot",
+    // "remoteUser": "ardupilot",
     "postCreateCommand": "bash"
 }
